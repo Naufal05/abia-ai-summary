@@ -2,16 +2,13 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-// Dynamically read backend URL from environment, defaulting to localhost for local development
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-
 export default function VendorsList() {
   const [vendors, setVendors] = useState([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
-    fetch(`${API_URL}/api/vendors`)
+    fetch("http://localhost:8000/api/vendors")
       .then((res) => res.json())
       .then((data) => {
         setVendors(data);
